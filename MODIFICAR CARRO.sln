@@ -1,25 +1,130 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.32228.430
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODIFICAR CARRO", "MODIFICAR CARRO\MODIFICAR CARRO.csproj", "{95AB403C-1E89-4F2A-A9F6-B2B4742A004C}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{95AB403C-1E89-4F2A-A9F6-B2B4742A004C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95AB403C-1E89-4F2A-A9F6-B2B4742A004C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95AB403C-1E89-4F2A-A9F6-B2B4742A004C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95AB403C-1E89-4F2A-A9F6-B2B4742A004C}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5AFF1C7D-02F6-41F3-9F93-AA89C5CCDE21}
-	EndGlobalSection
-EndGlobal
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TAREA_7_P1_MODIFICAR_CARRO.CLASES
+{
+    internal class MITROQUITA
+    {
+        public string Marca { get; }
+        public int Modelo { get; }
+        public String Color { get; set; }
+        private int Encendido = 0;
+        private int Rapido = 160;
+        private int Bocinar = 40;
+        private int Frenar = 10;
+        private int Apagar = 0;
+        private int velocidad_actual = 0;
+        public int MAXVELOCIDAD = 160;
+        public MITROQUITA(string _marca, int _modelo, string _color, int Maxvel)
+        {
+            Marca = _marca;
+            Modelo = _modelo;
+            Color = _color;
+            Encendido = 0;
+            Rapido = 160;
+            Frenar = 20;
+            Bocinar = 40;
+            MAXVELOCIDAD = 160;
+            this.velocidad_actual = 0;
+        }
+
+        public string acelerar()
+        {
+            string mensaje = "";
+            if (velocidad_actual <= MAXVELOCIDAD)
+            {
+                velocidad_actual += 10;
+                mensaje = $"Tu velocidad es de: {velocidad_actual}KPH";
+            }
+            if (velocidad_actual == 160) 
+            {
+                velocidad_actual = 160;
+                mensaje = "Cuidado vas a maxima velocidad te crees de rapidos y furioso o que pedo?";
+            }
+
+            Console.WriteLine(mensaje);
+            return mensaje;
+
+        }
+        public string GetVelocidadActual()
+        {
+            return $"Vamos a {velocidad_actual} KPH";
+        }
+        public string EncenderMotor()
+        {
+            string mensaje = "";
+            if (Encendido == 0)
+            {
+                Encendido = 1;
+                velocidad_actual = 0;
+                mensaje = $"Tu auto esta encendido";
+            }
+            Console.WriteLine(mensaje);
+            return mensaje;
+        }
+
+
+        public string desacelerar()
+        {
+
+            if (Rapido == 160)
+            {
+                Console.WriteLine( $"Deberias de desacelerar");
+            }
+
+            string mensaje = "";
+            if (velocidad_actual <= MAXVELOCIDAD)
+            {
+                velocidad_actual -= 10;
+                mensaje = $"Ahora vas a: {velocidad_actual}KPH";
+            }
+           
+            Console.WriteLine(mensaje);
+            return mensaje;
+        }
+
+        public string Disminuir()
+        {
+            string mensaje = "";
+            if (velocidad_actual <= MAXVELOCIDAD)
+            {
+                velocidad_actual = 10;
+                mensaje = $"FRENASTE TU VEHICULO";
+            }
+            Console.WriteLine(mensaje);
+            return mensaje;
+        }
+
+        public string Pipiiiiit()
+        {
+            string mensaje = "";
+            if (velocidad_actual <= MAXVELOCIDAD)
+            {
+                velocidad_actual = 40;
+                mensaje = $"PIIIIIIIIPIIIIIIIIIIIT";
+            }
+            Console.WriteLine(mensaje);
+            return mensaje;
+        }
+        public string parqueado()
+        {
+            string mensaje = "";
+            if (Apagar == 0)
+            {
+                Console.WriteLine($"APAGASTE TU VEHICULO");
+            }
+            Console.WriteLine(mensaje);
+            return mensaje;
+        }
+
+
+        public String DameInformacion()
+        {
+           return $"Soy un carro marca {Marca} y mi modelos es {Modelo}";
+        }
+
+    }
+}
